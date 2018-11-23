@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import 'yu.css.ui/dist/component/button.css'
 
 class ButtonExample extends Component {
   render() {

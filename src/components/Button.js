@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '../test.scss'
 import PropTypes from 'prop-types'
 
 class Button extends Component {

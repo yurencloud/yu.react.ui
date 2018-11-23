@@ -1,11 +1,22 @@
 import React, { Component } from 'react'
-import Button from './components/Button'
+import './main.scss'
+import './assets/yu.react.ui.scss'
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Button>button</Button>
+        <div className="web-slider">
+          <ul>
+            <li>
+              <button type="button">Button</button>
+            </li>
+          </ul>
+        </div>
+        <div className="web-content">
+            showComponent
+        </div>
       </div>
     )
   }
