@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ButtonExample from './example/ButtonExample'
+import RadioExample from './example/RadioExample'
 import './main.scss'
 import './assets/yu.react.ui.scss'
 
@@ -25,7 +26,7 @@ class App extends Component {
       case 'Button':
         return <ButtonExample />
       case 'Radio':
-        return <div>radio</div>
+        return <RadioExample />
       default:
     }
   }

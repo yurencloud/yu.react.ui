@@ -5,7 +5,7 @@ import classNames from 'classnames'
 class Button extends Component {
   render() {
     const {
-      children, type, nativeType, plain, disabled, size,
+      children, type, nativeType, plain, disabled, size, circle,
     } = this.props
 
     const YuButton = classNames({
@@ -14,6 +14,7 @@ class Button extends Component {
       plain,
       disabled,
       [size]: size,
+      circle,
     })
     return (
     // eslint-disable-next-line react/button-has-type
@@ -24,32 +25,10 @@ class Button extends Component {
   }
 }
 
-// icon: String,
-//     disabled: Boolean,
-//     shape: String,
-//     loading: Boolean,
-//     autofocus: Boolean,
-//     plain: Boolean,
-//     type: {
-//     type: String,
-// default: 'default',
-// },
-// size: {
-//     type: String,
-// default: 'normal',
-// },
-// nativeType: { // 原生属性button / submit / reset
-//     type: String,
-// default: 'button',
-// },
-
-
 Button.propTypes = {
   type: PropTypes.string,
   disabled: PropTypes.bool,
-  // shape: PropTypes.string,
-  // loading: PropTypes.bool,
-  // autofocus: PropTypes.bool,
+  circle: PropTypes.bool,
   plain: PropTypes.bool,
   size: PropTypes.string,
   nativeType: PropTypes.string,
@@ -61,6 +40,7 @@ Button.defaultProps = {
   plain: false,
   disabled: false,
   size: undefined,
+  circle: false,
 }
 
 export default Button
