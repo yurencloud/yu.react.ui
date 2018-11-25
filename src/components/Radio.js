@@ -15,7 +15,7 @@ class Radio extends Component {
   }
 
   render() {
-    const { checked } = this.state
+    const { checked, value } = this.state
     const {
       label,
     } = this.props
@@ -29,7 +29,7 @@ class Radio extends Component {
     /* eslint-disable jsx-a11y/label-has-associated-control */
     /* eslint-disable jsx-a11y/label-has-for */
       <label className={YuRadio} onClick={this.handleClick}>
-        <span className="radio"><input type="radio" /></span>
+        <span className="radio"><input type="radio" value={ value }/></span>
         <span>{label}</span>
       </label>
     )
