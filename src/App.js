@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ButtonExample from './example/ButtonExample'
 import RadioExample from './example/RadioExample'
+import InputExample from './example/InputExample'
 import './main.scss'
 import './assets/yu.react.ui.scss'
 
@@ -8,7 +9,7 @@ import './assets/yu.react.ui.scss'
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { active: 'Button' }
+    this.state = { active: 'Input' }
   }
 
   getMenuItem(name) {
@@ -27,6 +28,8 @@ class App extends Component {
         return <ButtonExample />
       case 'Radio':
         return <RadioExample />
+      case 'Input':
+        return <InputExample />
       default:
     }
   }
@@ -42,6 +45,7 @@ class App extends Component {
           <ul>
             {this.getMenuItem('Button')}
             {this.getMenuItem('Radio')}
+            {this.getMenuItem('Input')}
           </ul>
         </div>
         <div className="web-content">

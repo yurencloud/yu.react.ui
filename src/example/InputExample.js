@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
-import Radio from '../components/Radio'
+import Input from '../components/Input'
+import Field from '../components/Field'
 
 class InputExample extends Component {
+  handleChange(e) {
+    console.log(e.target.value)
+    this.value = e.target.value
+  }
+
   render() {
     return (
-      <div className="web-example">
-        <div className="web-title">单选框</div>
-        <Radio label="苹果" />
-      </div>
+      <Field>
+        <Input onChange={e => this.handleChange(e)} />
+      </Field>
     )
   }
 }
