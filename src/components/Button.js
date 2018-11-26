@@ -3,44 +3,45 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 class Button extends Component {
-  render() {
-    const {
-      children, type, nativeType, plain, disabled, size, circle,
-    } = this.props
+    static defaultProps = {
+      type: 'default',
+      nativeType: 'button',
+      plain: false,
+      disabled: false,
+      size: undefined,
+      circle: false,
+    }
 
-    const YuButton = classNames({
-      'yu-button': true,
-      [type]: type,
-      plain,
-      disabled,
-      [size]: size,
-      circle,
-    })
-    return (
-    // eslint-disable-next-line react/button-has-type
-      <button type={nativeType} className={YuButton}>
-        {children}
-      </button>
-    )
-  }
-}
+    static propTypes = {
+      type: PropTypes.string,
+      disabled: PropTypes.bool,
+      circle: PropTypes.bool,
+      plain: PropTypes.bool,
+      size: PropTypes.string,
+      nativeType: PropTypes.string,
+    }
 
-Button.propTypes = {
-  type: PropTypes.string,
-  disabled: PropTypes.bool,
-  circle: PropTypes.bool,
-  plain: PropTypes.bool,
-  size: PropTypes.string,
-  nativeType: PropTypes.string,
-}
 
-Button.defaultProps = {
-  type: 'default',
-  nativeType: 'button',
-  plain: false,
-  disabled: false,
-  size: undefined,
-  circle: false,
+    render() {
+      const {
+        children, type, nativeType, plain, disabled, size, circle,
+      } = this.props
+
+      const YuButton = classNames({
+        'yu-button': true,
+        [type]: type,
+        plain,
+        disabled,
+        [size]: size,
+        circle,
+      })
+      return (
+      // eslint-disable-next-line react/button-has-type
+        <button type={nativeType} className={YuButton}>
+          {children}
+        </button>
+      )
+    }
 }
 
 export default Button

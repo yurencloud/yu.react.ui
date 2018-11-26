@@ -64,10 +64,12 @@ class ButtonExample extends Component {
         <div className="web-title">图标</div>
         <Button>
           <i className="iconfont icon-location" />
+
 location
         </Button>
         <Button>
           <i className="iconfont icon-trash" />
+
 trash
         </Button>
       </div>
