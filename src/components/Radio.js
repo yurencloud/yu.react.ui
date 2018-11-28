@@ -7,11 +7,13 @@ class Radio extends Component {
 
     static defaultProps = {
       value: undefined,
+      onChange() {},
     }
 
     static propTypes = {
       label: PropTypes.string.isRequired,
       value: PropTypes.any,
+      onChange: PropTypes.func,
     }
 
     constructor(props) {
@@ -43,6 +45,7 @@ class Radio extends Component {
       const {
         label,
         value,
+        onChange,
       } = this.props
 
       const YuRadio = classNames({
@@ -53,7 +56,15 @@ class Radio extends Component {
       /* eslint-disable jsx-a11y/label-has-associated-control */
       /* eslint-disable jsx-a11y/label-has-for */
         <label className={YuRadio} onClick={this.handleClick}>
-          <span className="radio"><input type="radio" value={value} ref={this.saveRadio} /></span>
+          <span className="radio">
+            <input
+              type="radio"
+              checked={checked}
+              defaultChecked={value}
+              ref={this.saveRadio}
+              onChange={onChange}
+            />
+          </span>
           <span>{label}</span>
         </label>
       )

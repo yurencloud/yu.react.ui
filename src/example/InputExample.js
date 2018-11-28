@@ -3,9 +3,8 @@ import Input from '../components/Input'
 import Field from '../components/Field'
 
 class InputExample extends Component {
-  handleChange(e) {
+  static handleChange(e) {
     console.log(e.target.value)
-    this.value = e.target.value
   }
 
   render() {

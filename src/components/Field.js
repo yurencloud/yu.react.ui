@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Input extends Component {
+class Field extends Component {
     handleClick = () => {
       const { children } = this.props
       console.log(children.props)
@@ -20,4 +20,4 @@ class Input extends Component {
     }
 }
 
-export default Input
+export default Field
