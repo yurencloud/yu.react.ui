@@ -16,7 +16,6 @@ class Input extends Component {
 
     saveInput = (node) => {
       this.input = node
-      console.log(this.input)
     }
 
     focus() {

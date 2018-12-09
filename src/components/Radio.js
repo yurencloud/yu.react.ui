@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 class Radio extends Component {
-    radio = {}
-
     static defaultProps = {
       value: undefined,
       onChange() {},
@@ -23,21 +21,9 @@ class Radio extends Component {
 
     handleClick = (e) => {
       e.preventDefault()
-      const { checked } = this.state
-      this.setState({ checked: !checked })
-    }
-
-    saveRadio = (node) => {
-      this.radio = node
-      console.log(this.radio)
-    }
-
-    focus() {
-      this.radio.focus()
-    }
-
-    blur() {
-      this.radio.blur()
+      const checked = !this.state.checked
+      this.setState({ checked })
+      this.props.onChange(checked)
     }
 
     render() {
@@ -59,9 +45,7 @@ class Radio extends Component {
           <span className="radio">
             <input
               type="radio"
-              checked={checked}
               defaultChecked={value}
-              ref={this.saveRadio}
               onChange={onChange}
             />
           </span>

@@ -9,7 +9,7 @@ import './assets/yu.react.ui.scss'
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { active: 'Input' }
+    this.state = { active: 'Radio' }
   }
 
   getMenuItem(name) {
