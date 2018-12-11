@@ -5,14 +5,11 @@ import classNames from 'classnames'
 class Radio extends Component {
     static type = 'Radio'
 
-    static defaultProps = {
-      value: undefined,
-    }
-
     static propTypes = {
       label: PropTypes.string.isRequired,
-      value: PropTypes.any,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       onChange: PropTypes.func,
+      disabled: PropTypes.bool,
     }
 
     constructor(props) {
@@ -30,7 +27,9 @@ class Radio extends Component {
       }
     }
 
-    onChange(e) {
+    onChange = (e) => {
+      if (this.props.disabled) return
+
       const { checked } = e.target
 
       if (checked) {
@@ -49,7 +48,7 @@ class Radio extends Component {
 
     render() {
       const { checked } = this.state
-      const { label } = this.props
+      const { label, disabled } = this.props
 
       return (
       /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -57,13 +56,14 @@ class Radio extends Component {
         <label className={classNames({
           'yu-radio': true,
           checked,
+          disabled,
         })}
         >
           <span className="radio">
             <input
               type="radio"
               checked={checked}
-              onChange={this.onChange.bind(this)}
+              onChange={this.onChange}
             />
           </span>
           <span>{label}</span>

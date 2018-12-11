@@ -1,16 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 class RadioGroup extends Component {
-  onChange(value) {
+  static defaultProps = {
+    vertical: false,
+  }
+
+  onChange = (value) => {
     if (this.props.onChange) {
       this.props.onChange(value)
     }
   }
 
   render() {
+    const { vertical } = this.props
     return (
-      <div className="yu-radio-group">
+      <div className={classNames({
+        'yu-radio-group': true,
+        vertical,
+      })}
+      >
         {
               React.Children.map(this.props.children, (item) => {
                 if (!item) {
@@ -23,7 +33,7 @@ class RadioGroup extends Component {
                 }
 
                 return React.cloneElement(item, Object.assign({}, item.props, {
-                  onChange: this.onChange.bind(this),
+                  onChange: this.onChange,
                   model: this.props.value,
                 }))
               })
@@ -35,6 +45,7 @@ class RadioGroup extends Component {
 
 RadioGroup.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  vertical: PropTypes.bool,
   onChange: PropTypes.func,
 }
 

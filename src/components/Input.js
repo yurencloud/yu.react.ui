@@ -1,36 +1,44 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 class Input extends Component {
+    static type = 'Input'
+
     static defaultProps = {
-      value: undefined,
-      defaultValue: undefined,
-      onChange() {},
+      type: 'text',
     }
 
-    input = {}
-
-    constructor(props) {
-      super(props)
-      this.state = { value: 1 }
+    static propTypes = {
+      type: PropTypes.string,
+      placeholder: PropTypes.string,
+      onChange: PropTypes.func,
+      disabled: PropTypes.bool,
+      clearable: PropTypes.bool,
     }
 
-    saveInput = (node) => {
-      this.input = node
-    }
-
-    focus() {
-      this.input.focus()
-    }
-
-    blur() {
-      this.input.blur()
+    onChange = (e) => {
+      console.log(e)
     }
 
     render() {
-      const { value } = this.state
-      const { onChange } = this.props
+      const {
+        clearable, disabled, ...otherProps
+      } = this.props
+
       return (
-        <input type="text" ref={this.saveInput} value={value} onChange={onChange} />
+        <div className={classNames({
+          'yu-input': true,
+          disabled,
+        })}
+        >
+          <input
+            {...otherProps}
+            disabled={disabled}
+            onChange={this.onChange}
+          />
+          { clearable && <span className="clearable"><i className="iconfont icon-close-circle" onClick={this.onClear} /></span>}
+        </div>
       )
     }
 }

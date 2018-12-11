@@ -6,10 +6,6 @@ class Button extends Component {
     static defaultProps = {
       type: 'default',
       nativeType: 'button',
-      plain: false,
-      disabled: false,
-      size: undefined,
-      circle: false,
     }
 
     static propTypes = {
