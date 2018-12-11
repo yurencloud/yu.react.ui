@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 class Radio extends Component {
+    static type = 'Radio'
+
     static defaultProps = {
       value: undefined,
-      onChange() {},
     }
 
     static propTypes = {
@@ -16,37 +17,53 @@ class Radio extends Component {
 
     constructor(props) {
       super(props)
-      this.state = { checked: false }
+      this.state = { checked: this.getChecked(props) }
     }
 
-    handleClick = (e) => {
-      e.preventDefault()
-      const checked = !this.state.checked
-      this.setState({ checked })
-      this.props.onChange(checked)
+    // props从RadioGroup流入Radio
+    // 所有子Radio都会收到父的props
+    componentWillReceiveProps(props) {
+      const checked = this.getChecked(props)
+
+      if (this.state.checked !== checked) {
+        this.setState({ checked })
+      }
     }
+
+    onChange(e) {
+      const { checked } = e.target
+
+      if (checked) {
+        if (this.props.onChange) {
+          this.props.onChange(this.props.value)
+        }
+      }
+
+      this.setState({ checked })
+    }
+
+    getChecked = (props) => {
+      return props.model === props.value || Boolean(props.checked)
+    }
+
 
     render() {
       const { checked } = this.state
-      const {
-        label,
-        value,
-        onChange,
-      } = this.props
+      const { label } = this.props
 
-      const YuRadio = classNames({
-        'yu-radio': true,
-        checked,
-      })
       return (
       /* eslint-disable jsx-a11y/label-has-associated-control */
       /* eslint-disable jsx-a11y/label-has-for */
-        <label className={YuRadio} onClick={this.handleClick}>
+        <label className={classNames({
+          'yu-radio': true,
+          checked,
+        })}
+        >
           <span className="radio">
             <input
               type="radio"
-              defaultChecked={value}
-              onChange={onChange}
+              checked={checked}
+              onChange={this.onChange.bind(this)}
             />
           </span>
           <span>{label}</span>
