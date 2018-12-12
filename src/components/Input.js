@@ -16,10 +16,12 @@ class Input extends Component {
       onChange: PropTypes.func,
       disabled: PropTypes.bool,
       clearable: PropTypes.bool,
+      full: PropTypes.bool,
       defaultValue: PropTypes.any,
       value: PropTypes.any,
       prefixIcon: PropTypes.string,
       suffixIcon: PropTypes.string,
+      size: PropTypes.string,
     }
 
     onChange = (e) => {
@@ -36,7 +38,7 @@ class Input extends Component {
 
     render() {
       const {
-        clearable, disabled, prefixIcon, suffixIcon, children, ...otherProps
+        clearable, disabled, prefixIcon, suffixIcon, children, size, full, ...otherProps
       } = this.props
 
       if ('value' in this.props) {
@@ -81,6 +83,8 @@ class Input extends Component {
               suffix: suffixIcon,
               prepend,
               append,
+              [size]: size,
+              full,
             })}
             {...otherProps}
             disabled={disabled}

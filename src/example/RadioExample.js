@@ -22,11 +22,10 @@ class RadioExample extends Component {
         <div className="web-example">
           <div className="web-title">单选框</div>
           <Radio label="苹果" onChange={this.onChange1} value={1} />
-          <div style={{ height: '14px' }} />
+          <div className="web-model">{value1}</div>
 
           <div className="web-title">激活</div>
           <Radio label="苹果" checked onChange={this.onChange1} value={1} />
-          <div style={{ height: '14px' }} />
 
           <div className="web-title">禁用</div>
           <Radio label="苹果" disabled onChange={this.onChange1} value={1} />
@@ -39,6 +38,7 @@ class RadioExample extends Component {
             <Radio label="桃子" value={2} />
             <Radio label="香蕉" value={3} />
           </RadioGroup>
+          <div className="web-model">{value2}</div>
 
           <div className="web-title">单选框组(垂直)</div>
           <RadioGroup onChange={this.onChange2} vertical value={value2}>
@@ -46,9 +46,6 @@ class RadioExample extends Component {
             <Radio label="桃子" value={2} />
             <Radio label="香蕉" value={3} />
           </RadioGroup>
-
-          <div>{ value1 }</div>
-          <div>{ value2.toString() }</div>
         </div>
       )
     }
