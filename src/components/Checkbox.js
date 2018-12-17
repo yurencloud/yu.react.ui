@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-class Radio extends Component {
-    static type = 'Radio'
+class Checkbox extends Component {
+    static type = 'Checkbox'
 
     static propTypes = {
       label: PropTypes.string.isRequired,
@@ -17,8 +17,6 @@ class Radio extends Component {
       this.state = { checked: this.getChecked(props) }
     }
 
-    // props从RadioGroup流入Radio
-    // 所有子Radio都会收到父的props
     componentWillReceiveProps(props) {
       const checked = this.getChecked(props)
 
@@ -32,19 +30,16 @@ class Radio extends Component {
 
       const { checked } = e.target
 
-      if (checked) {
-        if (this.props.onChange) {
-          this.props.onChange(this.props.value)
-        }
+      if (this.props.onChange) {
+        this.props.onChange(checked, this.props.value)
       }
 
       this.setState({ checked })
     }
 
     getChecked = (props) => {
-      return props.model === props.value || Boolean(props.checked)
+      return (props.model && props.model.includes(props.value)) || Boolean(props.checked)
     }
-
 
     render() {
       const { checked } = this.state
@@ -52,14 +47,14 @@ class Radio extends Component {
 
       return (
         <label className={classNames({
-          'yu-radio': true,
+          'yu-checkbox': true,
           checked,
           disabled,
         })}
         >
-          <span className="radio">
+          <span className="checkbox">
             <input
-              type="radio"
+              type="checkbox"
               checked={checked}
               onChange={this.onChange}
             />
@@ -70,4 +65,4 @@ class Radio extends Component {
     }
 }
 
-export default Radio
+export default Checkbox
