@@ -3,6 +3,7 @@ import ButtonExample from './example/ButtonExample'
 import RadioExample from './example/RadioExample'
 import InputExample from './example/InputExample'
 import CheckboxExample from './example/CheckboxExample'
+import CounterExample from './example/CounterExample'
 import './main.scss'
 import './assets/yu.react.ui.scss'
 
@@ -10,7 +11,7 @@ import './assets/yu.react.ui.scss'
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { active: 'Checkbox' }
+    this.state = { active: 'Counter' }
   }
 
   getMenuItem(name) {
@@ -33,6 +34,8 @@ class App extends Component {
         return <InputExample />
       case 'Checkbox':
         return <CheckboxExample />
+      case 'Counter':
+        return <CounterExample />
       default:
     }
   }
@@ -50,6 +53,7 @@ class App extends Component {
             {this.getMenuItem('Radio')}
             {this.getMenuItem('Input')}
             {this.getMenuItem('Checkbox')}
+            {this.getMenuItem('Counter')}
           </ul>
         </div>
         <div className="web-content">

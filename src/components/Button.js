@@ -15,8 +15,15 @@ class Button extends Component {
       plain: PropTypes.bool,
       size: PropTypes.string,
       nativeType: PropTypes.string,
+      onClick: PropTypes.func,
     }
 
+    handleClick = (e) => {
+      const { disabled, onClick } = this.props
+      if (!disabled && onClick) {
+        onClick(e)
+      }
+    }
 
     render() {
       const {
@@ -33,7 +40,7 @@ class Button extends Component {
       })
       return (
       // eslint-disable-next-line react/button-has-type
-        <button type={nativeType} className={YuButton}>
+        <button type={nativeType} className={YuButton} onClick={this.handleClick}>
           {children}
         </button>
       )
