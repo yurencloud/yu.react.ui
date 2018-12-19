@@ -16,26 +16,65 @@ class Counter extends Component {
       step: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       disabled: PropTypes.bool,
       onChange: PropTypes.func.isRequired,
+      max: PropTypes.number,
+      min: PropTypes.number,
+      readonly: PropTypes.bool,
     }
 
     handleSub = () => {
-      const { value, step, onChange } = this.props
+      const {
+        value, step, onChange, min,
+      } = this.props
+
+      if (typeof min === 'number' && min >= value) return
+
       onChange(calculator.sub(value, step))
     }
 
     handleAdd = () => {
-      const { value, step, onChange } = this.props
+      const {
+        value, step, onChange, max,
+      } = this.props
+
+      if (typeof max === 'number' && max <= value) return
+
       onChange(calculator.add(value, step))
     }
 
-    onChange = (e) => {
-      this.props.onChange(Number(e.target.value))
+    handleInputChange = (val) => {
+      const {
+        min, max, onChange, step,
+      } = this.props
+      let value = val
+      if (typeof min === 'number' && min >= value) {
+        value = min
+      }
+      if (typeof max === 'number' && max <= value) {
+        value = max
+      }
+
+      step.toString().indexOf('.') + 1
+      // onChange(parseInt(value, 0))
+      onChange(Number(value))
+    }
+
+    parseStringNumber(number) {
+        const { step } = this.props
+      if (this.props.step.toString().indexOf('.') > 0 && number.indexOf('.') > 0) {
+        const precision = number.length - number.indexOf('.') - 1
+        return parseFloat(number)
+      } else {
+        return parseInt(number, 0)
+      }
     }
 
     render() {
       const {
         disabled,
         value,
+        min,
+        max,
+        readOnly,
       } = this.props
 
       return (
@@ -44,9 +83,9 @@ class Counter extends Component {
           disabled,
         })}
         >
-          <Button onClick={this.handleSub} disabled={disabled}>-</Button>
-          <Input onChange={this.onChange} value={value} disabled={disabled} />
-          <Button onClick={this.handleAdd} disabled={disabled}>+</Button>
+          <Button onClick={this.handleSub} disabled={disabled || min >= value}>-</Button>
+          <Input onChange={this.handleInputChange} value={value} disabled={disabled} readOnly={readOnly} />
+          <Button onClick={this.handleAdd} disabled={disabled || max <= value}>+</Button>
         </div>
       )
     }

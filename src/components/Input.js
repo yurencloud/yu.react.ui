@@ -16,12 +16,18 @@ class Input extends Component {
       onChange: PropTypes.func,
       disabled: PropTypes.bool,
       clearable: PropTypes.bool,
+      readOnly: PropTypes.bool,
       full: PropTypes.bool,
       defaultValue: PropTypes.any,
       value: PropTypes.any,
       prefixIcon: PropTypes.string,
       suffixIcon: PropTypes.string,
       size: PropTypes.string,
+    }
+
+    constructor(props) {
+      super(props)
+      console.log(props)
     }
 
     onChange = (e) => {

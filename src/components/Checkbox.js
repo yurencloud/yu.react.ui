@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-class Checkbox extends Component {
+class Checkbox extends PureComponent {
     static type = 'Checkbox'
 
     static propTypes = {

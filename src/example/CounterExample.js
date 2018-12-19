@@ -20,6 +20,14 @@ class CheckboxExample extends Component {
 
           <div className="web-title">禁用</div>
           <Counter onChange={this.onChange1} value={value1} disabled />
+
+          <div className="web-title">最大值/最小值</div>
+          <Counter onChange={this.onChange1} value={value1} max={2} />
+          <Counter onChange={this.onChange1} value={value1} min={-2} />
+          <Counter onChange={this.onChange1} value={value1} min={-2} max={2} />
+
+          <div className="web-title">输入框只读</div>
+          <Counter onChange={this.onChange1} value={value1} readonly />
         </div>
       )
     }
