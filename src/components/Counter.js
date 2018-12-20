@@ -60,9 +60,9 @@ class Counter extends Component {
 
     parseStringNumber(number) {
         const { step } = this.props
-      if (this.props.step.toString().indexOf('.') > 0 && number.indexOf('.') > 0) {
-        const precision = number.length - number.indexOf('.') - 1
-        return parseFloat(number)
+      if (step.toString().indexOf('.') > 0 && number.indexOf('.') > 0) {
+        const precision = step.length - number.indexOf('.') - 1
+        return parseFloat(number, precision)
       } else {
         return parseInt(number, 0)
       }
