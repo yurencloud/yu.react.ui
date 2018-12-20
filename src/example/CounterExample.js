@@ -3,7 +3,7 @@ import Counter from '../components/Counter'
 
 class CheckboxExample extends Component {
     state = {
-      value1: 0,
+      value1: '',
     }
 
     onChange1 = (value) => {
@@ -26,8 +26,17 @@ class CheckboxExample extends Component {
           <Counter onChange={this.onChange1} value={value1} min={-2} />
           <Counter onChange={this.onChange1} value={value1} min={-2} max={2} />
 
+          <div className="web-title">步长（支持浮点数）</div>
+          <Counter onChange={this.onChange1} value={value1} step={5} />
+          <Counter onChange={this.onChange1} value={value1} step={0.1} />
+
           <div className="web-title">输入框只读</div>
-          <Counter onChange={this.onChange1} value={value1} readonly />
+          <Counter onChange={this.onChange1} value={value1} readOnly />
+
+          <div className="web-title">尺寸</div>
+          <Counter onChange={this.onChange1} value={value1} size="small" />
+          <Counter onChange={this.onChange1} value={value1} />
+          <Counter onChange={this.onChange1} value={value1} size="large" />
         </div>
       )
     }

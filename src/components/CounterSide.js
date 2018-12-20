@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import Input from './Input'
-import Button from './Button'
 
 const calculator = require('yu.calculator')
 
-class Counter extends Component {
+class CounterSide extends Component {
     static defaultProps = {
       step: 1,
     }
@@ -68,17 +67,19 @@ class Counter extends Component {
 
       return (
         <div className={classNames({
-          'yu-counter': true,
+          'yu-counter-side': true,
           disabled,
-          size,
+          right: true,
         })}
         >
-          <Button size={size} onClick={this.handleSub} disabled={disabled || min >= value}>-</Button>
           <Input size={size} onChange={this.handleInputChange} value={value} disabled={disabled} readOnly={readOnly} />
-          <Button size={size} onClick={this.handleAdd} disabled={disabled || max <= value}>+</Button>
+          <div className={classNames({ button: true, [size]: size })}>
+            <button type="button" onClick={this.handleSub} disabled={disabled || min >= value}><i className="iconfont icon-angle-up" /></button>
+            <button type="button" onClick={this.handleAdd} disabled={disabled || max <= value}><i className="iconfont icon-angle-down" /></button>
+          </div>
         </div>
       )
     }
 }
 
-export default Counter
+export default CounterSide
